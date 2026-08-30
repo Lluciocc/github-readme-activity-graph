@@ -1,3 +1,9 @@
+```
+This repository is a fork of [Ashutosh00710/github-readme-activity-graph](https://github.com/Ashutosh00710/github-readme-activity-graph).
+
+It runs a daily workflow to generate and publish the activity graph SVG used on my GitHub profile.
+```
+
 <p align="center">
     <img src="asset/logo.svg" height="150">
 </p>
