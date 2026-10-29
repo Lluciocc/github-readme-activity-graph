@@ -31,6 +31,32 @@ jobs:
       - name: Build server
         run: npm run build
 
+      - name: Diagnose private contributions
+        env:
+          GH_TOKEN: ${{ secrets.GRAPH_TOKEN }}
+        run: |
+          gh api graphql -f query='
+          query {
+            viewer { login }
+            user(login: "Lluciocc") {
+              contributionsCollection(
+                from: "2026-10-28T00:00:00Z"
+                to: "2026-10-28T23:59:59Z"
+              ) {
+                hasAnyRestrictedContributions
+                restrictedContributionsCount
+                contributionCalendar {
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                    }
+                  }
+                }
+              }
+            }
+          }'
+
       - name: Start server
         env:
           TOKEN: ${{ secrets.GRAPH_TOKEN }}
